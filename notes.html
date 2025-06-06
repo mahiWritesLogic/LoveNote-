@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Notes 💌</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="notes-page">
+  <header>
+    <h1>Your Love Notes</h1>
+    <button onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+  </header>
+
+  <section id="notesSection">
+    <ul id="notesList"></ul>
+  </section>
+
+  <section class="add-note">
+    <textarea id="noteInput" placeholder="Write your heart out..."></textarea>
+    <button onclick="addNote()">Add Note</button>
+  </section>
+
+  <script>
+    const notesList = document.getElementById('notesList');
+    const noteInput = document.getElementById('noteInput');
+
+    // Load notes from localStorage
+    let notes = JSON.parse(localStorage.getItem('loveNotes') || '[]');
+
+    function renderNotes() {
+      notesList.innerHTML = '';
+      if (notes.length === 0) {
+        notesList.innerHTML = '<li><i>No notes yet, start writing!</i></li>';
+        return;
+      }
+      notes.forEach((note, i) => {
+        const li = document.createElement('li');
+        li.textContent = note;
+        li.className = 'note-item';
+        // Optional: add delete button per note
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '❌';
+        delBtn.onclick = () => {
+          notes.splice(i, 1);
+          saveNotes();
+          renderNotes();
+        };
+        li.appendChild(delBtn);
+        notesList.appendChild(li);
+      });
+    }
+
+    function saveNotes() {
+      localStorage.setItem('loveNotes', JSON.stringify(notes));
+    }
+
+    function addNote() {
+      const newNote = noteInput.value.trim();
+      if (!newNote) {
+        alert('Please write something sweet 💞');
+        return;
+      }
+      notes.push(newNote);
+      saveNotes();
+      renderNotes();
+      noteInput.value = '';
+      alert('Note added! 💌');
+    }
+
+    renderNotes();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

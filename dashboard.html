@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LoveNote Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <h1>Welcome back, LoveBirds 💞</h1>
+    <p id="coupleGreeting">Loading...</p>
+  </header>
+
+  <section class="dashboard-grid">
+    <div class="dash-card" onclick="goTo('notes.html')">
+      <h3>💌 Notes</h3>
+      <p>Write & read your love notes</p>
+    </div>
+    <div class="dash-card" onclick="goTo('gallery.html')">
+      <h3>📸 Gallery</h3>
+      <p>See your memory photos</p>
+    </div>
+    <div class="dash-card" onclick="goTo('emojis.html')">
+      <h3>🧸 Emojis</h3>
+      <p>Customize your cute symbols</p>
+    </div>
+    <div class="dash-card" onclick="goTo('quotes.html')">
+      <h3>✨ Quotes</h3>
+      <p>Romantic quote carousel</p>
+    </div>
+  </section>
+
+  <footer class="footer-love">
+    Made with 💖 by Mahi & Yogesh
+  </footer>
+
+  <script>
+    const coupleId = localStorage.getItem("coupleId");
+    document.getElementById("coupleGreeting").innerText =
+      coupleId ? `Couple ID: ${coupleId}` : "Your love story starts now!";
+
+    function goTo(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

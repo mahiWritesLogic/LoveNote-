@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Timeline ⏳💖</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="timeline-page">
+  <header>
+    <h1>Your Love Timeline</h1>
+    <button onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+  </header>
+
+  <section id="timelineSection">
+    <ul id="timelineList"></ul>
+  </section>
+
+  <script>
+    const timelineList = document.getElementById('timelineList');
+
+    // Fetch saved notes and photos from localStorage
+    let notes = JSON.parse(localStorage.getItem('loveNotes') || '[]');
+    let photos = JSON.parse(localStorage.getItem('lovePhotos') || '[]');
+
+    // Combine them as timeline items with timestamps (fake timestamps for demo)
+    // In real app, save timestamps when adding notes/photos
+
+    // For demo, generate timestamps now
+    const now = Date.now();
+
+    // Map notes & photos to timeline entries
+    const timelineItems = [];
+
+    notes.forEach((note, i) => {
+      timelineItems.push({
+        type: 'note',
+        content: note,
+        timestamp: now - i * 1000 * 60 * 60 * 24, // each note 1 day older
+      });
+    });
+
+    photos.forEach((photo, i) => {
+      timelineItems.push({
+        type: 'photo',
+        content: photo,
+        timestamp: now - i * 1000 * 60 * 60 * 12, // each photo 12 hours older
+      });
+    });
+
+    // Sort by timestamp descending (latest first)
+    timelineItems.sort((a, b) => b.timestamp - a.timestamp);
+
+    // Render timeline
+    function renderTimeline() {
+      timelineList.innerHTML = '';
+      if (timelineItems.length === 0) {
+        timelineList.innerHTML = '<li><i>No moments yet — create some love memories!</i></li>';
+        return;
+      }
+
+      timelineItems.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'timeline-item';
+
+        const time = new Date(item.timestamp).toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+
+        if (item.type === 'note') {
+          li.innerHTML = `<span class="timeline-date">${time}</span><p>💌 <em>${item.content}</em></p>`;
+        } else if (item.type === 'photo') {
+          li.innerHTML = `<span class="timeline-date">${time}</span><img src="${item.content}" alt="Memory photo" />`;
+        }
+
+        timelineList.appendChild(li);
+      });
+    }
+
+    renderTimeline();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Gallery 📸</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="gallery-page">
+  <header>
+    <h1>Your Photo Memories</h1>
+    <button onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+  </header>
+
+  <section class="gallery-grid" id="galleryGrid"></section>
+
+  <section class="upload-photo">
+    <input type="file" id="photoInput" accept="image/*" />
+    <button onclick="addPhoto()">Add Photo</button>
+  </section>
+
+  <script>
+    const galleryGrid = document.getElementById('galleryGrid');
+    const photoInput = document.getElementById('photoInput');
+
+    let photos = JSON.parse(localStorage.getItem('lovePhotos') || '[]');
+
+    function renderPhotos() {
+      galleryGrid.innerHTML = '';
+      if (photos.length === 0) {
+        galleryGrid.innerHTML = '<p><i>No photos yet, create memories!</i></p>';
+        return;
+      }
+      photos.forEach((photo, i) => {
+        const div = document.createElement('div');
+        div.className = 'photo-card';
+
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = `Memory ${i + 1}`;
+        img.title = `Memory ${i + 1}`;
+
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '❌';
+        delBtn.onclick = () => {
+          photos.splice(i, 1);
+          savePhotos();
+          renderPhotos();
+        };
+
+        div.appendChild(img);
+        div.appendChild(delBtn);
+        galleryGrid.appendChild(div);
+      });
+    }
+
+    function savePhotos() {
+      localStorage.setItem('lovePhotos', JSON.stringify(photos));
+    }
+
+    function addPhoto() {
+      const file = photoInput.files[0];
+      if (!file) {
+        alert('Please select a photo to add 📸');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        photos.push(e.target.result);
+        savePhotos();
+        renderPhotos();
+        photoInput.value = '';
+        alert('Photo added! 🌸');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    renderPhotos();
+  </script>
+</body>
+</html>

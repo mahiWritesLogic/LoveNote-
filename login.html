@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | LoveNote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+  <div class="login-box">
+    <h2>Welcome back 💞</h2>
+    <p>Enter your couple ID to continue your love story</p>
+    <input type="text" id="coupleId" placeholder="Enter your Couple ID" />
+    <button onclick="login()">Continue ➜</button>
+  </div>
+
+  <script>
+    function login() {
+      const id = document.getElementById('coupleId').value;
+      if (id.trim()) {
+        localStorage.setItem('coupleId', id);
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Please enter a valid couple ID 💖");
+      }
+    }
+  </script>
+</body>
+</html>

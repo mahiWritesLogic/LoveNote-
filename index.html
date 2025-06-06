@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LoveNote 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="landing-page">
+  <div class="hero">
+    <h1>LoveNote 💞</h1>
+    <p>Document your love story one note at a time</p>
+    <button onclick="window.location.href='login.html'">Start Loving ➜</button>
+  </div>
+  <script>
+    // Heart float animation (optional)
+    const body = document.body;
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+      body.appendChild(heart);
+      setTimeout(() => body.removeChild(heart), 5000);
+    }, 500);
+  </script>
+</body>
+</html>
+
