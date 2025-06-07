@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>LoveNote Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>LoveNote Dashboard 💕</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
 </head>
 <body class="dashboard-page">
-  <header class="dashboard-header">
-    <h1>Welcome back, LoveBirds 💞</h1>
-    <p id="coupleGreeting">Loading...</p>
+  <header>
+    <h1>Welcome to Your LoveNote 💖</h1>
   </header>
 
-  <section class="dashboard-grid">
-    <div class="dash-card" onclick="goTo('notes.html')">
-      <h3>💌 Notes</h3>
-      <p>Write & read your love notes</p>
-    </div>
-    <div class="dash-card" onclick="goTo('gallery.html')">
-      <h3>📸 Gallery</h3>
-      <p>See your memory photos</p>
-    </div>
-    <div class="dash-card" onclick="goTo('emojis.html')">
-      <h3>🧸 Emojis</h3>
-      <p>Customize your cute symbols</p>
-    </div>
-    <div class="dash-card" onclick="goTo('quotes.html')">
-      <h3>✨ Quotes</h3>
-      <p>Romantic quote carousel</p>
-    </div>
+  <section class="dashboard-cards">
+    <a href="notes.html" class="card notes-card">
+      <h2>Notes 💌</h2>
+      <p>Write your feelings and memories</p>
+    </a>
+
+    <a href="gallery.html" class="card gallery-card">
+      <h2>Gallery 📸</h2>
+      <p>View your shared photos</p>
+    </a>
+
+    <a href="timeline.html" class="card timeline-card">
+      <h2>Timeline ⏳</h2>
+      <p>Relive your love journey</p>
+    </a>
+
+    <a href="settings.html" class="card settings-card">
+      <h2>Settings ⚙️</h2>
+      <p>Manage your couple profile</p>
+    </a>
   </section>
-
-  <footer class="footer-love">
-    Made with 💖 by Mahi & Yogesh
-  </footer>
-
-  <script>
-    const coupleId = localStorage.getItem("coupleId");
-    document.getElementById("coupleGreeting").innerText =
-      coupleId ? `Couple ID: ${coupleId}` : "Your love story starts now!";
-
-    function goTo(page) {
-      window.location.href = page;
-    }
-  </script>
 </body>
 </html>

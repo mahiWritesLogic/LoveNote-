@@ -419,3 +419,47 @@ header button:hover {
   border-radius: 15px;
   box-shadow: 0 0 10px #ffb6c1;
 }
+/* Make everything readable and stack on smaller screens */
+@media (max-width: 768px) {
+  .dashboard-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .login-box {
+    width: 90%;
+    padding: 20px;
+  }
+}
+.settings-box {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff0f5;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.settings-box input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.settings-box button {
+  background-color: #ff69b4;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 10px 5px;
+  transition: 0.3s;
+}
+
+.settings-box button:hover {
+  background-color: #ff1493;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | LoveNote 💖</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="settings-page">
+  <div class="settings-box">
+    <h1>Settings ⚙️</h1>
+    <p><strong>Your Name:</strong> <span id="nameDisplay"></span></p>
+    <p><strong>Couple ID:</strong> <span id="idDisplay"></span></p>
+
+    <input type="text" id="newName" placeholder="Update Your Name" />
+    <button onclick="updateName()">Update Name 💬</button>
+
+    <button class="logout-btn" onclick="logout()">Logout 🚪</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
